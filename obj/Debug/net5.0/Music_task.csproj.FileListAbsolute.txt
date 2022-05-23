@@ -1,0 +1,47 @@
+/Users/augustinas/OneDrive - Kaunas University of Technology/Antras kursas/Music_task/obj/Debug/net5.0/Music_task.csproj.AssemblyReference.cache
+/Users/augustinas/OneDrive - Kaunas University of Technology/Antras kursas/Music_task/obj/Debug/net5.0/Music_task.GeneratedMSBuildEditorConfig.editorconfig
+/Users/augustinas/OneDrive - Kaunas University of Technology/Antras kursas/Music_task/obj/Debug/net5.0/Music_task.AssemblyInfoInputs.cache
+/Users/augustinas/OneDrive - Kaunas University of Technology/Antras kursas/Music_task/obj/Debug/net5.0/Music_task.AssemblyInfo.cs
+/Users/augustinas/OneDrive - Kaunas University of Technology/Antras kursas/Music_task/obj/Debug/net5.0/Music_task.csproj.CoreCompileInputs.cache
+/Users/augustinas/OneDrive - Kaunas University of Technology/Antras kursas/Music_task/obj/Debug/net5.0/Music_task.dll
+/Users/augustinas/OneDrive - Kaunas University of Technology/Antras kursas/Music_task/obj/Debug/net5.0/ref/Music_task.dll
+/Users/augustinas/OneDrive - Kaunas University of Technology/Antras kursas/Music_task/obj/Debug/net5.0/Music_task.pdb
+/Users/augustinas/OneDrive - Kaunas University of Technology/Antras kursas/Music_task/bin/Debug/net5.0/Music_task.deps.json
+/Users/augustinas/OneDrive - Kaunas University of Technology/Antras kursas/Music_task/bin/Debug/net5.0/Music_task.runtimeconfig.json
+/Users/augustinas/OneDrive - Kaunas University of Technology/Antras kursas/Music_task/bin/Debug/net5.0/Music_task.runtimeconfig.dev.json
+/Users/augustinas/OneDrive - Kaunas University of Technology/Antras kursas/Music_task/bin/Debug/net5.0/Music_task.dll
+/Users/augustinas/OneDrive - Kaunas University of Technology/Antras kursas/Music_task/bin/Debug/net5.0/ref/Music_task.dll
+/Users/augustinas/OneDrive - Kaunas University of Technology/Antras kursas/Music_task/bin/Debug/net5.0/Music_task.pdb
+/Users/augustinas/OneDrive - Kaunas University of Technology/Antras kursas/Music_task/obj/Debug/net5.0/Music_task.genruntimeconfig.cache
+D:\OneDrive - Kaunas University of Technology\Antras kursas\Music_task\bin\Debug\net5.0\Music_task.exe
+D:\OneDrive - Kaunas University of Technology\Antras kursas\Music_task\bin\Debug\net5.0\Music_task.deps.json
+D:\OneDrive - Kaunas University of Technology\Antras kursas\Music_task\bin\Debug\net5.0\Music_task.runtimeconfig.json
+D:\OneDrive - Kaunas University of Technology\Antras kursas\Music_task\bin\Debug\net5.0\Music_task.runtimeconfig.dev.json
+D:\OneDrive - Kaunas University of Technology\Antras kursas\Music_task\bin\Debug\net5.0\Music_task.dll
+D:\OneDrive - Kaunas University of Technology\Antras kursas\Music_task\bin\Debug\net5.0\ref\Music_task.dll
+D:\OneDrive - Kaunas University of Technology\Antras kursas\Music_task\bin\Debug\net5.0\Music_task.pdb
+D:\OneDrive - Kaunas University of Technology\Antras kursas\Music_task\obj\Debug\net5.0\Music_task.csproj.AssemblyReference.cache
+D:\OneDrive - Kaunas University of Technology\Antras kursas\Music_task\obj\Debug\net5.0\Music_task.GeneratedMSBuildEditorConfig.editorconfig
+D:\OneDrive - Kaunas University of Technology\Antras kursas\Music_task\obj\Debug\net5.0\Music_task.AssemblyInfoInputs.cache
+D:\OneDrive - Kaunas University of Technology\Antras kursas\Music_task\obj\Debug\net5.0\Music_task.AssemblyInfo.cs
+D:\OneDrive - Kaunas University of Technology\Antras kursas\Music_task\obj\Debug\net5.0\Music_task.csproj.CoreCompileInputs.cache
+D:\OneDrive - Kaunas University of Technology\Antras kursas\Music_task\obj\Debug\net5.0\Music_task.dll
+D:\OneDrive - Kaunas University of Technology\Antras kursas\Music_task\obj\Debug\net5.0\ref\Music_task.dll
+D:\OneDrive - Kaunas University of Technology\Antras kursas\Music_task\obj\Debug\net5.0\Music_task.pdb
+D:\OneDrive - Kaunas University of Technology\Antras kursas\Music_task\obj\Debug\net5.0\Music_task.genruntimeconfig.cache
+C:\Users\augus\source\repos\Music_task\bin\Debug\net5.0\Music_task.exe
+C:\Users\augus\source\repos\Music_task\bin\Debug\net5.0\Music_task.deps.json
+C:\Users\augus\source\repos\Music_task\bin\Debug\net5.0\Music_task.runtimeconfig.json
+C:\Users\augus\source\repos\Music_task\bin\Debug\net5.0\Music_task.runtimeconfig.dev.json
+C:\Users\augus\source\repos\Music_task\bin\Debug\net5.0\Music_task.dll
+C:\Users\augus\source\repos\Music_task\bin\Debug\net5.0\Music_task.pdb
+C:\Users\augus\source\repos\Music_task\obj\Debug\net5.0\Music_task.csproj.AssemblyReference.cache
+C:\Users\augus\source\repos\Music_task\obj\Debug\net5.0\Music_task.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\augus\source\repos\Music_task\obj\Debug\net5.0\Music_task.AssemblyInfoInputs.cache
+C:\Users\augus\source\repos\Music_task\obj\Debug\net5.0\Music_task.AssemblyInfo.cs
+C:\Users\augus\source\repos\Music_task\obj\Debug\net5.0\Music_task.csproj.CoreCompileInputs.cache
+C:\Users\augus\source\repos\Music_task\obj\Debug\net5.0\Music_task.dll
+C:\Users\augus\source\repos\Music_task\obj\Debug\net5.0\refint\Music_task.dll
+C:\Users\augus\source\repos\Music_task\obj\Debug\net5.0\Music_task.pdb
+C:\Users\augus\source\repos\Music_task\obj\Debug\net5.0\Music_task.genruntimeconfig.cache
+C:\Users\augus\source\repos\Music_task\obj\Debug\net5.0\ref\Music_task.dll
