@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\augus\\source\\repos\\Music_task\\Music_task.csproj": {}
+    "C:\\Users\\augus\\Documents\\GitHub\\Random-Path-Generation\\Music_task.csproj": {}
   },
   "projects": {
-    "C:\\Users\\augus\\source\\repos\\Music_task\\Music_task.csproj": {
+    "C:\\Users\\augus\\Documents\\GitHub\\Random-Path-Generation\\Music_task.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\augus\\source\\repos\\Music_task\\Music_task.csproj",
+        "projectUniqueName": "C:\\Users\\augus\\Documents\\GitHub\\Random-Path-Generation\\Music_task.csproj",
         "projectName": "Music_task",
-        "projectPath": "C:\\Users\\augus\\source\\repos\\Music_task\\Music_task.csproj",
+        "projectPath": "C:\\Users\\augus\\Documents\\GitHub\\Random-Path-Generation\\Music_task.csproj",
         "packagesPath": "C:\\Users\\augus\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\augus\\source\\repos\\Music_task\\obj\\",
+        "outputPath": "C:\\Users\\augus\\Documents\\GitHub\\Random-Path-Generation\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -42,6 +42,12 @@
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
+          "dependencies": {
+            "System.Drawing.Common": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

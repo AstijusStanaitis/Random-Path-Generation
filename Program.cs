@@ -2,6 +2,8 @@
 using System.IO;
 using System.Collections.Generic;
 using System.Linq;
+using System.Drawing;
+using System.Drawing.Drawing2D;
 
 namespace Music_task
 {
@@ -45,7 +47,24 @@ namespace Music_task
             File.WriteAllLines(resultsFile, AllLines);
             Console.WriteLine(String.Format("Point A: ({0};{1})  Point B: ({2};{3})  Point C: ({4};{5})", A.X, A.Y, B.X, B.Y, C.X, C.Y));
 
-            OutputStacks(stack1, stack2);
+            Point[] toC = ReturnArrayFromStack(stack1);
+            AllLines = new string[toC.Length];
+            for (int i = 0; i < toC.Length; i++)
+            {
+                AllLines[i] = toC[i].ToString();
+            }
+            File.WriteAllLines("stack1.txt", AllLines);
+            Point[] toB = ReturnArrayFromStack(stack2);
+            AllLines = new string[toB.Length];
+            for (int i = 0; i < toB.Length; i++)
+            {
+                AllLines[i] = toB[i].ToString();
+            }
+            File.WriteAllLines("stack2.txt", AllLines);
+
+            DrawImage(toC, toB);
+
+            OutputStacks(toC, toB);
         }
 
 
@@ -63,7 +82,7 @@ namespace Music_task
                 string decision;
                 decision = DecisionMaker(random, "FIRST", currentPoint.Y);
                 currentPoint = VectorManagment(Map, random, currentPoint, decision);
-                Console.WriteLine("->C " + currentPoint + "    " + lastPoint);
+                Console.WriteLine("->C " + currentPoint + "    " + C);
                 if (lastPoint.Equals(currentPoint))
                 {
                     counter++;
@@ -97,17 +116,17 @@ namespace Music_task
             Map[currentPoint.Y][currentPoint.X] = 2;
             Point lastPoint = currentPoint;
             int counter = 0;
-            ; while (!currentPoint.Equals(B))
+            while (!currentPoint.Equals(B))
             {
                 string decision;
                 decision = DecisionMaker(random, "SECOND", currentPoint.Y);
                 currentPoint = VectorManagment(Map, random, currentPoint, decision);
-                Console.WriteLine("->B " + currentPoint + "    " + lastPoint);
+                Console.WriteLine("->B " + currentPoint + "    " + B);
                 if (lastPoint.Equals(currentPoint))
                 {
                     counter++;
                 }
-                if (lastPoint != null && counter > 5)
+                if (lastPoint != null && counter > 10)
                 {
                     Point holder = lastPoint;
                     while (stack.Count != 0 && (lastPoint.Equals(currentPoint) || Math.Abs(lastPoint.X - currentPoint.X) <= 16 || Math.Abs(lastPoint.Y - currentPoint.Y) <= 16))
@@ -118,7 +137,7 @@ namespace Music_task
                     }
                     CleanMap(Map, currentPoint, holder);
                 }
-                if (!lastPoint.Equals(currentPoint) && !currentPoint.Equals(B))
+                if (!lastPoint.Equals(currentPoint))
                 {
                     stack.Push(currentPoint);
                     counter = 0;
@@ -174,10 +193,7 @@ namespace Music_task
             switch (direction)
             {
                 case "FIRST":
-                    if (y > 81)
-                    {
-                        return UP;
-                    }
+                    if (y > 81) return UP;
                     int decision = random.Next(7);
                     if (decision == 0 || decision == 1)
                     {
@@ -239,7 +255,7 @@ namespace Music_task
         {
             int counter = 0;
             int lastY = y;
-            while (counter < count && lastY - 2 >= 0 && Map[lastY - 2][x] != 2)
+            while ((counter < count && lastY - 2 >= 0 && Map[lastY - 2][x] != 2 && Map[lastY - 1][x] != 2) || (counter < count && lastY - 1 == 0))
             {
                 Map[lastY--][x] = 2;
                 counter++;
@@ -251,7 +267,7 @@ namespace Music_task
         {
             int counter = 0;
             int lastY = y;
-            while (counter < count && lastY + 2 < Map.Length && Map[lastY + 2][x] != 2)
+            while ((counter < count && lastY + 2 < Map.Length && Map[lastY + 2][x] != 2 && Map[lastY + 1][x] != 2) || (counter < count && lastY - 1 == 0))
             {
                 Map[lastY++][x] = 2;
                 counter++;
@@ -263,7 +279,7 @@ namespace Music_task
         {
             int counter = 0;
             int lastX = x;
-            while (counter < count && lastX - 2 >= 0 && Map[y][lastX - 2] != 2 || counter < count && lastX - 1 == 0)
+            while ((counter < count && lastX - 2 >= 0 && Map[y][lastX - 2] != 2 && Map[y][lastX - 1] != 2) || (counter < count && lastX - 1 == 0))
             {
                 Map[y][lastX--] = 2;
                 counter++;
@@ -274,7 +290,7 @@ namespace Music_task
         {
             int counter = 0;
             int lastX = x;
-            while (counter < count && lastX + 2 < Map[0].Length && Map[y][lastX + 2] != 2 || counter < count && lastX + 1 == Map[0].Length - 1)
+            while ((counter < count && lastX + 2 < Map[0].Length && Map[y][lastX + 2] != 2 && Map[y][lastX + 1] != 2) || (counter < count && lastX + 1 == Map[0].Length - 1))
             {
                 Map[y][lastX++] = 2;
                 counter++;
@@ -290,7 +306,8 @@ namespace Music_task
                 string direction = Point.FindDirection(arr1[i], arr1[i + 1]);
                 if (direction == "LEFT")
                 {
-                    arr1[i].X = arr1[i].X - Point.FindDistance(arr1[i], arr1[i + 1]);
+                    arr1[i].distance = Point.FindDistance(arr1[i], arr1[i + 1]);
+                    arr1[i].X = arr1[i].X - arr1[i].distance;
                     arr1[i].direction = direction;
                     points.Add(arr1[i]);
                 }
@@ -302,11 +319,12 @@ namespace Music_task
             }
             for (int i = 0; i < arr2.Length - 2; i++)
             {
-                string direction = Point.FindDirection(arr1[i], arr1[i + 1]);
+                string direction = Point.FindDirection(arr2[i], arr2[i + 1]);
                 if (direction == "LEFT")
                 {
+                    arr2[i].distance = Point.FindDistance(arr2[i], arr2[i + 1]);
                     Point holder = arr2[i];
-                    holder.X = holder.X - Point.FindDistance(arr2[i], arr2[i + 1]);
+                    holder.X = holder.X - holder.distance;
                     holder.direction = direction;
                     points.Add(holder);
                 }
@@ -320,31 +338,28 @@ namespace Music_task
             return sortedPoints;
         }
 
-        static void OutputStacks(Stack<Point> stack1, Stack<Point> stack2)
+        static void OutputStacks(Point[] arr1, Point[] arr2)
         {
-            Point[] arr1 = new Point[stack1.Count];
-            int counter = stack1.Count - 1;
-            while (stack1.Count != 0)
-            {
-                arr1[counter--] = stack1.Pop();
-            }
-
-            Point[] arr2 = new Point[stack2.Count];
-            counter = stack2.Count - 1;
-            while (stack2.Count != 0)
-            {
-                arr2[counter--] = stack2.Pop();
-            }
             List<Point> sorted = SortByX(arr1, arr2);
 
             using (StreamWriter output = new StreamWriter("rezultatai.txt"))
             {
-                Point lastLeft = null;
+                int vectorEnd = -1;
                 for (int i = 1; i < sorted.Count() - 1; i++)
                 {
                     if (sorted[i].direction == LEFT)
                     {
-                        lastLeft = sorted[i];
+                        if (vectorEnd != -1)
+                        {
+                            if (sorted[i].X < vectorEnd)
+                            {
+                            }
+                        }
+                        else
+                        {
+                            vectorEnd = sorted[i].X + sorted[i].distance;
+                        }
+
                     }
                     output.WriteLine(String.Format("{0} {1} {2};", (sorted[i].X - sorted[i - 1].X) * 250, sorted[i].direction.ToLower(), 300 + yLength - 1 - sorted[i].Y));
                 }
@@ -359,6 +374,78 @@ namespace Music_task
                 }
             }
         }
+
+
+        static Point[] ReturnArrayFromStack(Stack<Point> stack)
+        {
+            Point[] arr1 = new Point[stack.Count];
+            int counter = stack.Count - 1;
+            while (stack.Count != 0)
+            {
+                arr1[counter--] = stack.Pop();
+            }
+            return arr1;
+        }
+
+        static void DrawImage(Point[] toC, Point[] toB)
+        {
+            Point[] combined = toC.Concat(toB).ToArray();
+            Bitmap image = new Bitmap(2500, 1000);
+            Graphics g = Graphics.FromImage(image);
+            AdjustableArrowCap myArrow = new AdjustableArrowCap(3, 3);
+            Pen p = new Pen(Brushes.Black);
+            g.Clear(Color.White);
+            p.CustomEndCap = myArrow;
+            Point lastPoint = combined[0];
+            for (int i = 1; i < combined.Length; i++)
+            {
+                string direction = Point.FindDirection(lastPoint, combined[i]);
+                int distance = Point.FindDistance(lastPoint, combined[i]);
+                if (direction == RIGHT)
+                {
+                    g.DrawLine(p, lastPoint.X * 4 + 30, lastPoint.Y * 4 + 200, (lastPoint.X + distance) * 4 + 30, lastPoint.Y * 4 + 200);
+                }
+                else if (direction == LEFT)
+                {
+                    g.DrawLine(p, lastPoint.X * 4 + 30, lastPoint.Y * 4 + 200, (lastPoint.X - distance) * 4 + 30, lastPoint.Y * 4 + 200);
+                }
+                else if (direction == UP)
+                {
+                    g.DrawLine(p, lastPoint.X * 4 + 30, lastPoint.Y * 4 + 200, lastPoint.X * 4 + 30, (lastPoint.Y - distance) * 4 + 200);
+                }
+                else if (direction == DOWN)
+                {
+                    g.DrawLine(p, lastPoint.X * 4 + 30, lastPoint.Y * 4 + 200, lastPoint.X * 4 + 30, (lastPoint.Y + distance) * 4 + 200);
+                }
+                lastPoint = combined[i];
+            }
+            //lastPoint = toB[0];
+            //for (int i = 1; i < toB.Length; i++)
+            //{
+            //    string direction = Point.FindDirection(lastPoint, toB[i]);
+            //    int distance = Point.FindDistance(lastPoint, toB[i]);
+            //    if (direction == RIGHT)
+            //    {
+            //        g.DrawLine(p, lastPoint.X * 4, lastPoint.Y * 4, (lastPoint.X + distance) * 4, lastPoint.Y * 4);
+            //    }
+            //    else if (direction == LEFT)
+            //    {
+            //        g.DrawLine(p, lastPoint.X * 4, lastPoint.Y * 4, (lastPoint.X - distance) * 4, lastPoint.Y * 4);
+            //    }
+            //    else if (direction == UP)
+            //    {
+            //        g.DrawLine(p, lastPoint.X * 4, lastPoint.Y * 4, lastPoint.X * 4, (lastPoint.Y - distance) * 4);
+            //    }
+            //    else if (direction == DOWN)
+            //    {
+            //        g.DrawLine(p, lastPoint.X * 4, lastPoint.Y * 4, lastPoint.X * 4, (lastPoint.Y + distance) * 4);
+            //    }
+            //    lastPoint = toB[i];
+
+            //}
+            image.Save("image.bmp");
+
+        }
     }
 
     public class Point
@@ -366,6 +453,8 @@ namespace Music_task
         public int X;
         public int Y;
         public string direction;
+        public int distance;
+        public string name;
 
         public Point(int x, int y)
         {
