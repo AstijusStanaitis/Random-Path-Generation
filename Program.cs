@@ -80,7 +80,7 @@ namespace Music_task
             ; while (!currentPoint.Equals(C))
             {
                 string decision;
-                decision = DecisionMaker(random, "FIRST", currentPoint.Y);
+                decision = DecisionMaker(random, "FIRST", currentPoint.Y, C);
                 currentPoint = VectorManagment(Map, random, currentPoint, decision);
                 Console.WriteLine("->C " + currentPoint + "    " + C);
                 if (lastPoint.Equals(currentPoint))
@@ -188,7 +188,7 @@ namespace Music_task
         }
 
 
-        static string DecisionMaker(Random random, string direction, int y)
+        static string DecisionMaker(Random random, string direction, int y, Point toFind = null)
         {
             switch (direction)
             {
@@ -301,7 +301,7 @@ namespace Music_task
         static List<Point> SortByX(Point[] arr1, Point[] arr2)
         {
             List<Point> points = new List<Point>();
-            for (int i = 0; i < arr1.Length - 2; i++)
+            for (int i = 0; i < arr1.Length - 1; i++)
             {
                 string direction = Point.FindDirection(arr1[i], arr1[i + 1]);
                 if (direction == "LEFT")
@@ -313,23 +313,24 @@ namespace Music_task
                 }
                 else
                 {
+                    arr1[i].distance = Point.FindDistance(arr1[i], arr1[i + 1]);
                     arr1[i].direction = direction;
                     points.Add(arr1[i]);
                 }
             }
-            for (int i = 0; i < arr2.Length - 2; i++)
+            for (int i = 0; i < arr2.Length - 1; i++)
             {
                 string direction = Point.FindDirection(arr2[i], arr2[i + 1]);
                 if (direction == "LEFT")
                 {
                     arr2[i].distance = Point.FindDistance(arr2[i], arr2[i + 1]);
-                    Point holder = arr2[i];
-                    holder.X = holder.X - holder.distance;
-                    holder.direction = direction;
-                    points.Add(holder);
+                    arr2[i].X = arr2[i].X - arr2[i].distance;
+                    arr2[i].direction = direction;
+                    points.Add(arr2[i]);
                 }
                 else
                 {
+                    arr2[i].distance = Point.FindDistance(arr2[i], arr2[i + 1]);
                     arr2[i].direction = direction;
                     points.Add(arr2[i]);
                 }
@@ -341,27 +342,67 @@ namespace Music_task
         static void OutputStacks(Point[] arr1, Point[] arr2)
         {
             List<Point> sorted = SortByX(arr1, arr2);
-
+            List<int> vectorsEndsLeft = new List<int>();
+            List<int> vectorsEndsRight = new List<int>();
             using (StreamWriter output = new StreamWriter("rezultatai.txt"))
             {
-                int vectorEnd = -1;
-                for (int i = 1; i < sorted.Count() - 1; i++)
+                for (int i = 0; i < sorted.Count() - 1; i++)
                 {
-                    if (sorted[i].direction == LEFT)
+                    if (vectorsEndsLeft.Count(vectorEnd => vectorEnd < sorted[i].X) > 0)
                     {
-                        if (vectorEnd != -1)
+                        for (int j = 0; j < vectorsEndsLeft.Count; j++)
                         {
-                            if (sorted[i].X < vectorEnd)
+                            if (vectorsEndsLeft[j] != -1 && vectorsEndsLeft[j] < sorted[i].X)
                             {
+                                sorted.Insert(i, new Point(vectorsEndsLeft[j], 0) { direction = "left" + j });
+                                vectorsEndsLeft[j] = -1;
                             }
                         }
-                        else
+                        
+                    }
+                    if (vectorsEndsRight.Count(vectorEnd => vectorEnd < sorted[i].X) > 0)
+                    {
+                        for (int j = 0; j < vectorsEndsRight.Count; j++)
                         {
-                            vectorEnd = sorted[i].X + sorted[i].distance;
+                            if (vectorsEndsRight[j] != -1 && vectorsEndsRight[j] < sorted[i].X)
+                            {
+                                sorted.Insert(i, new Point(vectorsEndsRight[j], 0) { direction = "right" + j });
+                                vectorsEndsRight[j] = -1;
+                            }
                         }
 
                     }
-                    output.WriteLine(String.Format("{0} {1} {2};", (sorted[i].X - sorted[i - 1].X) * 250, sorted[i].direction.ToLower(), 300 + yLength - 1 - sorted[i].Y));
+                    if (sorted[i].direction == LEFT)
+                    {
+                        int j = 0;
+                        while (j < vectorsEndsLeft.Count && vectorsEndsLeft[j] != -1)
+                        {
+                            j++;
+                        }
+                        if (j >= vectorsEndsLeft.Count)
+                        {
+                            vectorsEndsLeft.Add(sorted[i].X + sorted[i].distance);
+                        }
+                        else vectorsEndsLeft[j] = sorted[i].X + sorted[i].distance;
+                        sorted[i].direction = "left" + j;
+                    }
+                    if (sorted[i].direction == RIGHT)
+                    {
+                        int j = 0;
+                        while (j < vectorsEndsRight.Count && vectorsEndsRight[j] != -1)
+                        {
+                            j++;
+                        }
+                        if (j >= vectorsEndsRight.Count)
+                        {
+                            vectorsEndsRight.Add(sorted[i].X + sorted[i].distance);
+                        }
+                        else
+                            vectorsEndsRight[j] = sorted[i].X + sorted[i].distance;
+                        sorted[i].direction = "right" + j;
+                    }
+                    if (i == 0) output.WriteLine(String.Format("{0} {1} {2};", 0, sorted[i].direction.ToLower(), sorted[i].Y != 0 ? 300 + yLength - 1 - sorted[i].Y : 0));
+                    else output.WriteLine(String.Format("{0} {1} {2};", (sorted[i].X - sorted[i - 1].X) * 250, sorted[i].direction.ToLower(), sorted[i].Y != 0 ? 300 + yLength - 1 - sorted[i].Y : 0));
                 }
                 string[] stopLines = new string[4];
                 stopLines[0] = String.Format("{0} right 0;", 0);
@@ -419,30 +460,6 @@ namespace Music_task
                 }
                 lastPoint = combined[i];
             }
-            //lastPoint = toB[0];
-            //for (int i = 1; i < toB.Length; i++)
-            //{
-            //    string direction = Point.FindDirection(lastPoint, toB[i]);
-            //    int distance = Point.FindDistance(lastPoint, toB[i]);
-            //    if (direction == RIGHT)
-            //    {
-            //        g.DrawLine(p, lastPoint.X * 4, lastPoint.Y * 4, (lastPoint.X + distance) * 4, lastPoint.Y * 4);
-            //    }
-            //    else if (direction == LEFT)
-            //    {
-            //        g.DrawLine(p, lastPoint.X * 4, lastPoint.Y * 4, (lastPoint.X - distance) * 4, lastPoint.Y * 4);
-            //    }
-            //    else if (direction == UP)
-            //    {
-            //        g.DrawLine(p, lastPoint.X * 4, lastPoint.Y * 4, lastPoint.X * 4, (lastPoint.Y - distance) * 4);
-            //    }
-            //    else if (direction == DOWN)
-            //    {
-            //        g.DrawLine(p, lastPoint.X * 4, lastPoint.Y * 4, lastPoint.X * 4, (lastPoint.Y + distance) * 4);
-            //    }
-            //    lastPoint = toB[i];
-
-            //}
             image.Save("image.bmp");
 
         }
