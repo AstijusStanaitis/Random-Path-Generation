@@ -381,9 +381,9 @@ namespace Music_task
                         }
                         if (j >= vectorsEndsLeft.Count)
                         {
-                            vectorsEndsLeft.Add(sorted[i].X + sorted[i].distance);
+                            vectorsEndsLeft.Add(sorted[i + 1].X);
                         }
-                        else vectorsEndsLeft[j] = sorted[i].X + sorted[i].distance;
+                        else vectorsEndsLeft[j] = sorted[i + 1].X;
                         sorted[i].direction = "left" + j;
                     }
                     if (sorted[i].direction == RIGHT)
@@ -395,20 +395,24 @@ namespace Music_task
                         }
                         if (j >= vectorsEndsRight.Count)
                         {
-                            vectorsEndsRight.Add(sorted[i].X + sorted[i].distance);
+                            vectorsEndsRight.Add(sorted[i + 1].X);
                         }
                         else
-                            vectorsEndsRight[j] = sorted[i].X + sorted[i].distance;
+                            vectorsEndsRight[j] = sorted[i + 1].X;
                         sorted[i].direction = "right" + j;
                     }
                     if (i == 0) output.WriteLine(String.Format("{0} {1} {2};", 0, sorted[i].direction.ToLower(), sorted[i].Y != 0 ? 300 + yLength - 1 - sorted[i].Y : 0));
                     else output.WriteLine(String.Format("{0} {1} {2};", (sorted[i].X - sorted[i - 1].X) * 250, sorted[i].direction.ToLower(), sorted[i].Y != 0 ? 300 + yLength - 1 - sorted[i].Y : 0));
                 }
-                string[] stopLines = new string[4];
-                stopLines[0] = String.Format("{0} right 0;", 0);
-                stopLines[1] = String.Format("{0} left 0;", 0);
-                stopLines[2] = String.Format("{0} up 0;", 0);
-                stopLines[3] = String.Format("{0} down 0;", 0);
+                string[] stopLines = new string[32];
+                stopLines[0] = String.Format("{0} up 0;", 0);
+                stopLines[1] = String.Format("{0} down 0;", 0);
+                for (int i = 0; i < 15; i++)
+                {
+                    stopLines[i] = String.Format("{0} right{1} 0;", 0, i);
+                    stopLines[i + 15] = String.Format("{0} left{1} 0;", 0, i);
+                }
+
                 for (int i = 0; i < stopLines.Length; i++)
                 {
                     output.WriteLine(stopLines[i]);
