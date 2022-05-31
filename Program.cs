@@ -344,7 +344,7 @@ namespace Music_task
             List<Point> sorted = SortByX(arr1, arr2);
             List<int> vectorsEndsLeft = new List<int>();
             List<int> vectorsEndsRight = new List<int>();
-            using (StreamWriter output = new StreamWriter("rezultatai.txt"))
+            using (StreamWriter output = new StreamWriter("C:\\Users\\astij\\OneDrive\\Dokumentai\\GitHub\\Random-Path-Generation\\pd\\rezultatai.txt"))
             {
                 for (int i = 0; i < sorted.Count() - 1; i++)
                 {
@@ -358,7 +358,7 @@ namespace Music_task
                                 vectorsEndsLeft[j] = -1;
                             }
                         }
-                        
+
                     }
                     if (vectorsEndsRight.Count(vectorEnd => vectorEnd < sorted[i].X) > 0)
                     {
@@ -464,7 +464,7 @@ namespace Music_task
                 }
                 lastPoint = combined[i];
             }
-            image.Save("image.bmp");
+            image.Save("C:\\Users\\astij\\OneDrive\\Dokumentai\\GitHub\\Random-Path-Generation\\pd\\image.bmp");
 
         }
     }

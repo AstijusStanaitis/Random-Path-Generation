@@ -123,23 +123,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\augus\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\astij\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\augus\\Documents\\GitHub\\Random-Path-Generation\\Music_task.csproj",
+      "projectUniqueName": "C:\\Users\\astij\\OneDrive\\Dokumentai\\GitHub\\Random-Path-Generation\\Music_task.csproj",
       "projectName": "Music_task",
-      "projectPath": "C:\\Users\\augus\\Documents\\GitHub\\Random-Path-Generation\\Music_task.csproj",
-      "packagesPath": "C:\\Users\\augus\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\augus\\Documents\\GitHub\\Random-Path-Generation\\obj\\",
+      "projectPath": "C:\\Users\\astij\\OneDrive\\Dokumentai\\GitHub\\Random-Path-Generation\\Music_task.csproj",
+      "packagesPath": "C:\\Users\\astij\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\astij\\OneDrive\\Dokumentai\\GitHub\\Random-Path-Generation\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\augus\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\astij\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -185,7 +186,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
       }
     }
   }

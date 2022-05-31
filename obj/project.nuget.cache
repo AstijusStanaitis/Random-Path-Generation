@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "8CcFfPF1wtAVETV46oGT8qCSciF1rj0NYDMGrj/c5lpFID9dI4SHCi1tbfZKTEbI4Tw505C+pzO3oE7vxcQBbw==",
+  "dgSpecHash": "c8XnxluN4jqKR6dsvOuSr/F4M1Mzdt5N/OFAovGSeBh4ZNxs4KIkQqp7rgOOw9M1rD9GnDsB3rt1UG0B5KlX9g==",
   "success": true,
-  "projectFilePath": "C:\\Users\\augus\\Documents\\GitHub\\Random-Path-Generation\\Music_task.csproj",
+  "projectFilePath": "C:\\Users\\astij\\OneDrive\\Dokumentai\\GitHub\\Random-Path-Generation\\Music_task.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\augus\\.nuget\\packages\\microsoft.win32.systemevents\\6.0.0\\microsoft.win32.systemevents.6.0.0.nupkg.sha512",
-    "C:\\Users\\augus\\.nuget\\packages\\system.drawing.common\\6.0.0\\system.drawing.common.6.0.0.nupkg.sha512"
+    "C:\\Users\\astij\\.nuget\\packages\\microsoft.win32.systemevents\\6.0.0\\microsoft.win32.systemevents.6.0.0.nupkg.sha512",
+    "C:\\Users\\astij\\.nuget\\packages\\system.drawing.common\\6.0.0\\system.drawing.common.6.0.0.nupkg.sha512"
   ],
   "logs": []
 }
